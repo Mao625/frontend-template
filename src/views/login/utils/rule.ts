@@ -25,20 +25,20 @@ const formRules = reactive(<FormRules>{
       trigger: "blur"
     }
   ],
-  email: [
-    {
-      validator: (rule, value, callback) => {
-        if (value === "") {
-          callback(new Error("请输入邮箱"));
-        } else if (!REGEXP_EMAIL.test(value)) {
-          callback(new Error("请输入正确邮箱"));
-        } else {
-          callback();
-        }
-      },
-      trigger: "blur"
-    }
-  ],
+  // email: [
+  //   {
+  //     validator: (rule, value, callback) => {
+  //       if (value === "") {
+  //         callback(new Error("请输入邮箱"));
+  //       } else if (!REGEXP_EMAIL.test(value)) {
+  //         callback(new Error("请输入正确邮箱"));
+  //       } else {
+  //         callback();
+  //       }
+  //     },
+  //     trigger: "blur"
+  //   }
+  // ],
   checkCode: [
     {
       validator: (rule, value, callback) => {

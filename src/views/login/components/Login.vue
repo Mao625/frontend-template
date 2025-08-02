@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from "vue";
+import {nextTick, onBeforeUnmount, onMounted, ref} from "vue";
 import Motion from "../utils/motion";
 import { useRenderIcon } from "@/components/ReIcon/src/hooks";
 import Lock from "@iconify-icons/ri/lock-fill";
@@ -27,6 +27,7 @@ const changePage = pageName => {
 
 const loginForm = ref({
   email: "",
+  userAccount: "",
   userPassword: ""
 });
 const loading = ref(false);
@@ -67,8 +68,16 @@ const onLogin = async (formEl: FormInstance | undefined) => {
         user: res.data,
         roles: [res.data.userRole]
       } as userType);
-      router.push({ name: "Home" });
-      // 全部采取静态路由模式
+      // 先注册权限菜单和补路由
+      // usePermissionStoreHook().handleWholeMenus([]);
+      // addPathMatch();
+
+      // 延迟一点跳转，确保路由生效
+      await nextTick();
+      await router.replace({ name: "Home" }); // replace 比 push 更安全避免重复 history
+
+      // await router.push({ name: "Home" });
+      //  全部采取静态路由模式
       usePermissionStoreHook().handleWholeMenus([]);
       addPathMatch();
       message("登录成功", { type: "success" });
@@ -110,12 +119,22 @@ onBeforeUnmount(() => {
     size="large"
     v-if="currentPage === 'login'"
   >
-    <Motion :delay="100">
+<!--    <Motion :delay="100">
       <el-form-item prop="email">
         <el-input
           clearable
           v-model="loginForm.email"
           placeholder="邮箱号"
+          :prefix-icon="useRenderIcon(Mail)"
+        />
+      </el-form-item>
+    </Motion>-->
+    <Motion :delay="100">
+      <el-form-item prop="userAccount">
+        <el-input
+          clearable
+          v-model="loginForm.userAccount"
+          placeholder="账号"
           :prefix-icon="useRenderIcon(Mail)"
         />
       </el-form-item>

@@ -34,6 +34,10 @@ export const start = async (mail: string, time = 60) => {
   } else {
     ElMessage.error("系统繁忙");
   }
-  const lockType: LockType = { isDisabled: isDisabled.value, timer, text: text.value };
+  const lockType: LockType = {
+    isDisabled: isDisabled.value,
+    timer,
+    text: text.value
+  };
   return lockType;
 };

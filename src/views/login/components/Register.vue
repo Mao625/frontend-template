@@ -26,15 +26,15 @@ const lock = ref<LockType>({
 });
 
 const getCode = async () => {
-  if (!registerForm.value.email) {
-    return ElMessage.error("请输入邮箱");
+  if (!registerForm.value.userAccount) {
+    return ElMessage.error("请输入账号");
   }
-  lock.value = await start(registerForm.value.email);
+  lock.value = await start(registerForm.value.userAccount);
 };
 
 const loading = ref(false);
 const registerForm = ref({
-  email: "",
+  userAccount: "",
   checkCode: "",
   userPassword: "",
   checkPassword: ""
@@ -90,17 +90,17 @@ const checkPasswordRule = [
     size="large"
   >
     <Motion :delay="100">
-      <el-form-item prop="email">
+      <el-form-item prop="userAccount">
         <el-input
           clearable
-          v-model="registerForm.email"
-          placeholder="请输入邮箱"
+          v-model="registerForm.userAccount"
+          placeholder="请输入账号"
           :prefix-icon="useRenderIcon(Mail)"
         />
       </el-form-item>
     </Motion>
 
-    <Motion :delay="150">
+    <!--    <Motion :delay="150">
       <el-form-item prop="checkCode">
         <div class="w-full flex justify-between">
           <el-input
@@ -116,7 +116,7 @@ const checkPasswordRule = [
           </el-button>
         </div>
       </el-form-item>
-    </Motion>
+    </Motion>-->
 
     <Motion :delay="200">
       <el-form-item prop="userPassword">
