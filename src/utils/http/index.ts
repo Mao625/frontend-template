@@ -14,7 +14,7 @@ import NProgress from "../progress";
 
 // 相关配置请参考：www.axios-js.com/zh-cn/docs/#axios-request-config-1
 const defaultConfig: AxiosRequestConfig = {
-  baseURL: "http://localhost:8101",
+  baseURL: "http://localhost:8081/api",
   withCredentials: true,
   // 请求超时时间
   timeout: 10000,
@@ -159,8 +159,9 @@ const request = async <T = any>(
       ...rest
     });
   } else {
-    return await http.request<T>(method, url, options.data, {
-      ...rest
+    return await http.request<T>(method, url, {
+      ...rest,
+      data: options.data // 正确地把 body 设置到 data 字段
     });
   }
 };

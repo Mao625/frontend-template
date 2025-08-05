@@ -32,7 +32,7 @@ export async function uploadFileUsingPost(
     }
   });
 
-  return request<API.BaseResponseString_>("/api/file/upload", {
+  return request<API.BaseResponsestring>("/api/file/upload", {
     method: "POST",
     params: {
       ...params

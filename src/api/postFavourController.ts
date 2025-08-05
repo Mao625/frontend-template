@@ -7,7 +7,7 @@ export async function doPostFavourUsingPost(
   body: API.PostFavourAddRequest,
   options?: { [key: string]: any }
 ) {
-  return request<API.BaseResponseInt_>("/api/post_favour/", {
+  return request<API.BaseResponseint>("/api/post_favour/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -22,7 +22,7 @@ export async function listFavourPostByPageUsingPost(
   body: API.PostFavourQueryRequest,
   options?: { [key: string]: any }
 ) {
-  return request<API.BaseResponsePagePostVO_>("/api/post_favour/list/page", {
+  return request<API.BaseResponsePagePostVO>("/api/post_favour/list/page", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -37,7 +37,7 @@ export async function listMyFavourPostByPageUsingPost(
   body: API.PostQueryRequest,
   options?: { [key: string]: any }
 ) {
-  return request<API.BaseResponsePagePostVO_>("/api/post_favour/my/list/page", {
+  return request<API.BaseResponsePagePostVO>("/api/post_favour/my/list/page", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"

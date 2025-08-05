@@ -21,6 +21,22 @@ export default {
       meta: {
         title: "用户管理"
       }
+    },
+    {
+      path: "/admin/api/apiManage",
+      name: "ApiManage",
+      component: () => import("@/views/permission/api/apiManage.vue"),
+      meta: {
+        title: "API管理"
+      }
+    },
+    {
+      path: "/admin/client/clientManage",
+      name: "ClientManage",
+      component: () => import("@/views/permission/client/clientManage.vue"),
+      meta: {
+        title: "API接入方管理"
+      }
     }
   ]
 } as RouteConfigsTable;
